@@ -1,0 +1,12 @@
+{
+    "telemetry.machineId": "b7a2297753c1666ba2fc48206954e270862ea5e36dda50187c09ca34302381b7",
+    "theme": "vs-dark",
+    "themeBackground": "#1e1e1e",
+    "pickerWorkingDir": "/var/www/html",
+    "openedPathsList": {
+        "workspaces2": [
+            "file:///var/www/html/Projectcode"
+        ],
+        "files2": []
+    }
+}
