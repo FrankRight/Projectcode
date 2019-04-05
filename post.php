@@ -1,4 +1,4 @@
-<?php $pagename = "post page"; include( 'header.php'); ?>
+<?php $pagename = "post page"; include( 'header.php'); include( 'connect-db.php'); ?>
 
 
 <div >
@@ -12,6 +12,17 @@
 	</div>
 </div>		
 
+<?php
+
+$sql = "SELECT Title FROM posts WHERE postID = 1";
+$result = mysqli_query($db,$sql);
+$row = mysqli_fetch_array($result);
+
+$image = $row['name'];
+$image_src = "/var/www/html/Projectcode/Posts/".$image;
+
+?>
+<img src='<?php echo $image_src;  ?>'>
 					
 <div>
 

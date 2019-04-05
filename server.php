@@ -105,7 +105,7 @@ if (isset($_POST['signin'])) {
                 header('location: makeareport.php');
             }
         }else {
-            array_push($errors, "Wrong username/password combination");
+            array_push($errors, "Wrong username and password combination");
         }
     }
   }

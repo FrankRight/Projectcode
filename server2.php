@@ -1,4 +1,4 @@
-<?php
+    <?php
 // initializing variables
 $number = "";
 $locationNow = "";
@@ -21,6 +21,10 @@ $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
         if (empty($number)) 
     { 
         array_push($errors, "Their number is cructial!");
+    }
+    if(!preg_match('/^[0-9]{1,}/',$number))
+    {
+        array_push($errors, "Enter the correct elephant number!");
     }
     #
     if (empty($locationNow))

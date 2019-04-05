@@ -41,9 +41,8 @@
 							<li><a href = "index.php">MAIN HOMEPAGE</a></li>
 							<li><a href = "#"></a></li>
 							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
-							<li class = "cat-3"><a href="contact.php">CONTACT</a></li>
-							<li class = "cat-5"><a href="register.php">ADD USERS</a></li>
-                            <li class = "cat-3"><a href="logout.php">LOG OUT</a></li>
+							<li class = "cat-5"><a href="contact.php">CONTACT</a></li>
+              <li class = "cat-3"><a href="logout.php">LOG OUT</a></li>
 						</ul>
 						<!-- /nav -->
 
@@ -113,6 +112,56 @@
 			<!-- /Nav -->
 		</header>
 
-<h1>Hello, admin </h1>
+<h1>POST </h1>
+
+	<form action="admin_Index.php" method="post" enctype="multipart/form-data">
+			<input type="text" placeholder = "Enter Title" class="input">
+      <label for="file">Select the file you want to Post:</label>
+      <input type="file" name="file"><br>
+			<label>Describe the Image: </label>
+			<textarea name="Description" class="input" id="" cols="30" rows="4"></textarea>
+      <input type="submit" name="submit-image" value="Submit" class="form-submit">
+  </form>
+
+	<?php
+
+	if(isset($_POST['submit-image']))
+	{
+		$Description = mysqli_real_escape_string($db, $_POST['Description']);
+    if ($_FILES["file"]["error"] > 0) {
+        echo "Error! No file selected" . "<br>" . "Please Select a file first to continue";
+    } else {
+
+        //$upload_dir = dirname(__FILE__) . "/photos/";
+        $upload_dir ="/var/www/html/Projectcode/Posts/";
+        //echo "upload_dir: " . $upload_dir . "<br>";
+				if (file_exists($upload_dir))
+				{
+						if (is_writable($upload_dir))
+						{
+                $target = $upload_dir; //"dirname(__FILE__)" . "photos/";
+                $target = $target . basename($_FILES['file']['name']);
+                $moved = move_uploaded_file( $_FILES['file']['tmp_name'], "$target");
+            } else {
+                echo 'Upload directory is not writable<br>';
+            }
+        } else {
+            echo 'Upload directory does not exist.<br>';
+        }
+       // echo $target . "<br>";
+    //  echo dirname(__FILE__)."<br>";
+    $Upload = $_FILES["file"]["name"];
+    //echo "Type: " . $_FILES["file"]["type"] . "<br>";
+    $Size = ($_FILES["file"]["size"] / 1024);
+		//echo "Stored in: " . $_FILES["file"]["tmp_name"];
+
+		#connect to the database first.
+		$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+		
+		$queryImage = "INSERT INTO posts(Title, size, source, Description) VALUES ('".$target."', '".$Size."', '$upload_dir', '$Description')";
+		mysqli_query($db, $queryImage);
+}
+	}
+?> 
 
 <?php include('footer.inc')?>

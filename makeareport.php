@@ -12,6 +12,7 @@
 				unset($_SESSION['username']);
 				header("location: signin.php");
 			}
+
 ?>
 
 <!DOCTYPE html>
