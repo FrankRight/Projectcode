@@ -29,7 +29,7 @@
                                     </div><br>
                                     <div >
                                         <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
-                                        <label for="agree-term" ><span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                                        <label for="agree-term" ><span></span>I agree all statements in  <a href="termsAndConditions.php" class="term-service">Terms of service</a></label>
                                     </div><br>
                                     <div >
                                         <input type="submit" name="register" class="form-submit" value="Register"/>

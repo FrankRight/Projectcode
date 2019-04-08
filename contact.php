@@ -41,7 +41,7 @@
 						<ul class="nav-menu nav navbar-nav">
 							<li><a href = "index.php">HOME</a></li>
 							<li><a href = "#"></a></li>
-							<li class = "cat-1"><a href="signin.php">MAKE A REPORT</a></li>
+							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
                             <li class = "cat-5"><a href="about.php">ABOUT US</a></li>
 						</ul>
@@ -68,8 +68,9 @@
 						<ul class="nav-aside-menu">
 							<li><a href="index.php">Home</a></li>
                             <li><a href="about.php">About Us</a></li>
-                            <li><a href="signin.php">Make a Report</a></li>
+                            <li><a href="makeareport.php">Make a Report</a></li>
 							<li><a href="reports.php">Reports</a></li>
+							<li><a href="post.php">Posts</a></li>
 							<li><a href="contact.php">Contact Us</a></li>
 						</ul>
 					</div>
@@ -82,7 +83,6 @@
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 						</ul>
 					</div>
 					<!-- /social links -->
@@ -130,7 +130,7 @@
 					<div class="col-md-6">
 						<div class="section-row">
 							<h3>Contact Information</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<p>You can visit our visit and contact us every day, 24 - 7 long. Give us your feedback which will be highly valued. You can contact using the below information.</p>
 							<ul class="list-style">
 								<li><p><strong>Email:</strong> <a href="Mailto:frankbosire2017@gmail.com">Mail me</a></p></li>
 								<li><p><strong>Phone:</strong> +254799244523</p></li>

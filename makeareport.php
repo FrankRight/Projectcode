@@ -3,16 +3,16 @@
 <?php
 			session_start(); 
 		  
-			if (!isset($_SESSION['username'])) {
+			if (!isset($_SESSION['username'])){
 				$_SESSION['msg'] = "You must log in first";
 				header('location: signin.php');
 			}
-			if (isset($_GET['logout'])) {
+			if (isset($_GET['logout'])){
 				session_destroy();
 				unset($_SESSION['username']);
 				header("location: signin.php");
 			}
-
+else{
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale = 1">
 		 <!-- Above 3 a must tags-->
 
-		<title><?php echo $pagename ?></title>
+		<title>make a report</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
@@ -61,7 +61,7 @@
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
               				<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
 							<li class = "cat-5"><a href="register.php">JOIN US</a></li>
-							<li class = "cat-3"><a href="logout.php">log out</a></li>
+							
 						</ul>
 						<!-- /nav -->
 
@@ -73,7 +73,8 @@
 								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
 								<button class="search-close"><i class="fa fa-times"></i></button>
 							</div>
-						</div>
+							<span style="color: red"><a href="logout.php">log out</span>
+						</div> 
 						<!-- /search & aside toggle -->
 					</div>
 				</div>
@@ -86,7 +87,7 @@
 						<ul class="nav-aside-menu">
 							<li><a href="index.php">Home</a></li>
               				<li><a href="about.php">About Us</a></li>
-							<li><a href="post.php">Post</a></li>
+							<li><a href="post.php">Posts</a></li>
              				 <li><a href="makeareport.php">Make a Report</a></li>
 							<li><a href="reports.php">Reports</a></li>
 							<li><a href="contact.php">Contact Us</a></li>
@@ -134,12 +135,9 @@
 	<!-------End of Header session----->
 	
 	<div class="report-info">
+		
 		<div class="report-details">
-			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum facilis vel dolorem nemo repellat totam, debitis temporibus, expedita ipsam libero voluptates amet, quas ducimus officia. Sint distinctio est reprehenderit rerum.
-			
-		</div>
-		<div class="report-details">
-			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum facilis vel dolorem nemo repellat totam, debitis temporibus, expedita ipsam libero voluptates amet, quas ducimus officia. Sint distinctio est reprehenderit rerum.
+			Please fill provide the following details about the situation in the field.
 			
 		</div>
 	</div>
@@ -163,7 +161,7 @@
 		</div><br>
 
 		<div>
-		<textarea name="Description" class="input" id="" cols="30" rows="4">Brief Description</textarea>
+		<textarea name="Description" class="input" cols="30" rows="4" placeholder="Brief Description"></textarea>
 		</div><br>
 
 		<div>
@@ -176,4 +174,5 @@
 
 
 </html>
-            
+
+<?php } ?>     

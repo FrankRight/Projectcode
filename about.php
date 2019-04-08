@@ -40,7 +40,7 @@
 						<ul class="nav-menu nav navbar-nav">
 							<li><a href = "index.php">HOME</a></li>
 							<li><a href = "#"></a></li>
-							<li class = "cat-1"><a href="signin.php">MAKE A REPORT</a></li>
+							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
               				<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
 						</ul>
@@ -67,8 +67,9 @@
 						<ul class="nav-aside-menu">
 							<li><a href="index.php">Home</a></li>
               				<li><a href="about.php">About Us</a></li>
-              				<li><a href="signin.php">Make a Report</a></li>
+              				<li><a href="makeareport.php">Make a Report</a></li>
 							<li><a href="reports.php">Reports</a></li>
+							<li><a href="post.php">Posts</a></li>
 							<li><a href="contact.php">Contact Us</a></li>
 						</ul>
 					</div>
@@ -80,21 +81,21 @@
 						<div class="post post-widget">
 							<a class="post-img" href="#"><img src="./elephantPhotos/post5.jpg" alt=""></a>
 							<div class="post-body">
-								<h3 class="post-title"><a href="#">elephant recent post 1</a></h3>
+								<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
 							</div>
 						</div>
 
 						<div class="post post-widget">
 							<a class="post-img" href="#"><img src="./elephantPhotos/post3.jpg" alt=""></a>
 							<div class="post-body">
-								<h3 class="post-title"><a href="#">elephant recent post 2</a></h3>
+								<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
 							</div>
 						</div>
 
 						<div class="post post-widget">
 							<a class="post-img" href="#"><img src="./elephantPhotos/post4.jpg" alt=""></a>
 							<div class="post-body">
-								<h3 class="post-title"><a href="#">Elephant recent post 3</a></h3>
+								<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
 							</div>
 						</div>
 					</div>
@@ -107,7 +108,6 @@
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 						</ul>
 					</div>
 					<!-- /social links -->
@@ -125,10 +125,8 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-10">
-							<ul class="page-header-breadcrumb">
-								<li><a href="index.php">HOME</a></li>
-								<li>About Us</li>
-							</ul>
+								<span><a href="index.php">HOME</a>/</span>
+								<span>About Us</span><br><br>
 							<h1>About Us</h1>
 						</div>
 					</div>
@@ -146,25 +144,26 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="section-row">
-							<p>Lorem ipsum dolor sit amet, ea eos tibique expetendis, tollit viderer ne nam. No ponderum accommodare eam, purto nominavi cum ea, sit no dolores tractatos. Scripta principes quaerendum ex has, ea mei omnes eruditi. Nec ex nulla mandamus, quot omnesque mel et. Amet habemus ancillae id eum, justo dignissim mei ea, vix ei tantas aliquid. Cu laudem impetus conclusionemque nec, velit erant persius te mel. Ut eum verterem perpetua scribentur.</p>
-							<figure class="figure-img">
-								<img class="img-responsive" src="./img/about-1.jpg" alt="">
+							<p>Jvbuerveeee ejrbvevje ejvee ejverjv jvbejvejvej.</p>
+							<figure >
+								<img  src="./elephantPhotos/post27.jpeg" alt="">
 							</figure>
-							<p>Vix mollis admodum ei, vis legimus voluptatum ut, vis reprimique efficiendi sadipscing ut. Eam ex animal assueverit consectetuer, et nominati maluisset repudiare nec. Rebum aperiam vis ne, ex summo aliquando dissentiunt vim. Quo ut cibo docendi. Suscipit indoctum ne quo, ne solet offendit hendrerit nec. Case malorum evertitur ei vel.</p>
+							<br>
+							<p>Dvadjhvdvjhdva asdjvjsvasdj ajsvbjhsvas ajvbjhasdv adjvsjhs sanvsfjh.</p>
 						</div>
 						<div class="row section-row">
 							<div class="col-md-6">
 								<figure class="figure-img">
-									<img class="img-responsive" src="./img/about-2.jpg" alt="">
+									<img class="img-responsive" src="./elephantPhotos/post36.jpeg" alt="">
 								</figure>
 							</div>
 							<div class="col-md-6">
 								<h3>Our Mission</h3>
-								<p>Id usu mutat debet tempor, fugit omnesque posidonium nec ei. An assum labitur ocurreret qui, eam aliquid ornatus tibique ut.</p>
+								<p>We are always focused to achieve the following.</p>
 								<ul class="list-style">
-									<li><p>Vix mollis admodum ei, vis legimus voluptatum ut.</p></li>
-									<li><p>Cu cum alia vide malis. Vel aliquid facilis adolescens.</p></li>
-									<li><p>Laudem rationibus vim id. Te per illum ornatus.</p></li>
+									<li><p>Reduce the effects brought about by Human - Wildlife Conflicts.</p></li>
+									<li><p>Help spend about the importance of elephants.</p></li>
+									<li><p></p></li>
 								</ul>
 							</div>
 						</div>
@@ -175,7 +174,7 @@
 						<!-- ad -->
 						<div class="aside-widget text-center">
 							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="#" alt="">
+								<img class="img-responsive" src="./elephantPhotos/post5.jpg" alt="">
 							</a>
 						</div>
 						<!-- /ad -->
@@ -189,28 +188,21 @@
 							<div class="post post-widget">
 								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post39.jpg" alt=""></a>
 								<div class="post-body">
-									<h3 class="post-title">Is this known to you?</h3>
+									<span><a href="posts.php">post 1</a></span>
 								</div>
 							</div>
 
 							<div class="post post-widget">
 								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post38.jpeg" alt=""></a>
 								<div class="post-body">
-									<h3 class="post-title">recent posts 1</h3>
-								</div>
-							</div>
-
-							<div class="post post-widget">
-								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post38.jpg" alt=""></a>
-								<div class="post-body">
-									<h3 class="post-title"><a href="#">elephants</a></h3>
+								<span><a href="posts.php">Post 2</a></span>
 								</div>
 							</div>
 
 							<div class="post post-widget">
 								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post13.jpg" alt=""></a>
 								<div class="post-body">
-									<h3 class="post-title"><a href=" ">Statictics on elephants in Kenya</a></h3>
+									<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
 								</div>
 							</div>
 						<!-- /post widget -->

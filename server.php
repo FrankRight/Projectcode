@@ -98,6 +98,7 @@ if (isset($_POST['signin'])) {
         if (mysqli_num_rows($results) == 1) {
             if($username == "admin" && $password = ".md5(fank2010)")
             {
+                $_SESSION['username'] = $username;
                 header('location: admin_Index.php');
             }else{
                 $_SESSION['username'] = $username;

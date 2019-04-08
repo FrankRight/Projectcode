@@ -32,7 +32,7 @@
 					<div class="container">
 						<!-- logo -->
 						<div class="nav-logo">
-							<a href="index.php" class="logo"><img src="" alt="lg"></a>
+							<a href="index.php" class="logo"><img src="" alt="logo"></a>
 						</div>
 						<!-- /logo -->
 
@@ -68,7 +68,7 @@
 						<ul class="nav-aside-menu">
 							<li><a href="index.php">Home</a></li>
               				<li><a href="about.php">About Us</a></li>
-							<li><a href="post.php">Post</a></li>
+							<li><a href="post.php">Posts</a></li>
              				 <li><a href="makeareport.php">Make a Report</a></li>
 							<li><a href="reports.php">Reports</a></li>
 							<li><a href="contact.php">Contact Us</a></li>
@@ -80,15 +80,15 @@
 					<div class="section-row">
 						<h3>Recent Posts</h3>
 						<span class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post5.jpg" alt=""></a>
+							<a class="post-img" href="posts.php"><img src="./elephantPhotos/post5.jpg" alt=""></a>
 						</span>
 
 						<span class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post3.jpg" alt=""></a>
+							<a class="post-img" href="posts.php"><img src="./elephantPhotos/post3.jpg" alt=""></a>
 						</span>
 
 						<span class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post4.jpg" alt=""></a>
+							<a class="post-img" href="posts.php"><img src="./elephantPhotos/post4.jpg" alt=""></a>
 						</span>
 					</div>
 					<!-- /widget posts -->
@@ -132,7 +132,7 @@
 									<a class="post-category cat-2" href="#">Cool right?</a>
 									<span class="post-date">March 15, 2019</span>
 								</div>
-								<h3 class="post-subject">Add atitle <?php echo $postSubject?></a></h3>
+								<h3 class="post-subject">Add atitle </h3>
 							</div>
 						</div>
 					</div>
@@ -155,27 +155,41 @@
 				</div>
 				<!-- /row -->
 
-				
-		
-
 		<hr />
 		<!-- Reports section -->
 		<div class="section">
 			<!-- container -->
 			<div class="container">
 				<!--Page Header-->			
-				<div class="col-md-12">
-					<div class="section-title">
+				<div >
+					<div >
 						<h2>Recent Attack Reports</h2>
-					</div>
+					</div><br>
 				</div>
 				<!--/Page Header-->
 
-				<div>
+				<?php $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+				if ($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+				} 
 
-				</div>	
+
+				$ReportMade = "SELECT  NumberOfElephants, LocationNow, LocationTo, Description, date_Time FROM reports ORDER BY `ReportID` DESC LIMIT 5"	;
+				$result = $db->query($ReportMade);
+
+				if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						
+						echo "<div class= 'report-container'> ".$row["date_Time"]."<br>"."<br>"." Number Of Elephants: " . $row["NumberOfElephants"]."<br>". " Their Location Now: " . $row["LocationNow"]."<br>". " Their Location To: " . $row["LocationTo"]. "<br>"." Description: " . $row["Description"]. "<br>"."<br></div>";
+						echo "<hr>";
+					}
+				} else {
+					echo "No results";
+				}
+				?>
 				
-
+				<p>Previous Reports... <a href="reports.php" > See More </a><p>
 				
 			</div>
 			<!-- /container -->
