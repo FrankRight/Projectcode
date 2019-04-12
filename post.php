@@ -1,30 +1,45 @@
-<?php $pagename = "post page"; include( 'header.php'); include( 'connect-db.php'); ?>
+<?php $pagename = "post page"; include( 'header.php'); ?>
 
 
-<div >
-	<a class="post-img" href="#"><img src="./elephantPhotos/post1.jpeg" alt="post"></a>
-	<div class="post-body">
-		<div class="post-meta">
-			<a class="post-category cat-1" href="#">title<?php echo $postSubject ?></a>
-			<span class="post-date">March 15, 2019<?php echo $datePosted ?></span>
-		</div>
-		<h3 class="post-subject">Add a description <?php echo $postinfo ?></h3>
-	</div>
-</div>		
+		
 
 <?php
 
-$sql = "SELECT Title FROM posts WHERE postID = 1";
-$result = mysqli_query($db,$sql);
-$row = mysqli_fetch_array($result);
+// connect to the database
+$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+$sql = "SELECT Title, sourceDir, Date_Time, Description FROM posts WHERE userID = 1 ";
+$result = $db->query($sql);
 
-$image = $row['name'];
-$image_src = "/var/www/html/Projectcode/Posts/".$image;
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+
+			$Title = $row["Title"];
+			$source = $row["sourceDir"];
+			$Datetime = $row["Date_Time"];
+			$Description = $row["Description"];
+
+			echo "
+				<div class='post-container'>
+					<div class='col-md-5 col-md-offset-1'>
+					<div class='post-meta'>
+						<a class='post-category cat-1' >$Title</a>
+					</div>	
+						<div ><img src=$source width = auto height= 350px alt='error!' class='post-img'>
+							<div class='post-body'>
+								<span class='post-date'>$Datetime</span>
+								<h4>$Description</h4>
+							</div>
+						</div>
+					</div>
+				</div>";
+		}
+
+	}
 
 ?>
-<img src='<?php echo $image_src;  ?>'>
 					
-<div>
+<div style="width: 100%;" class="col-md-5 " >
 
 	<?php include( 'footer.inc'); ?>
 

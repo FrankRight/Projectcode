@@ -513,11 +513,11 @@ textarea.input {
     width: 100%;
 }
 .post .post-meta {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 .post-meta .post-category {
-    font-size: 13px;
+    font-size: 20px;
     text-transform: uppercase;
     padding: 3px 10px;
     font-weight: 600;
@@ -540,6 +540,11 @@ textarea.input {
     background-color: #8d00ff;
 }
 
+.post-container{
+    width: 100%;
+    content: normal;
+}
+
 .post-meta .post-category.cat-5 {
     background-color: #0078ff;
 }
@@ -554,8 +559,8 @@ textarea.input {
 }
 .post-tags li {
     display:inline-block;
-    margin-right:3px;
-    margin-bottom:5px;
+    margin-right:0px;
+    margin-bottom:0px;
 }
 .post-tags li a {
     display:block;
@@ -579,10 +584,10 @@ textarea.input {
 .post.post-widget .post-img {
     width: 100px;
     float: left;
-    margin-right: 15px;
+    margin-right: 0px;
 }
 .post.post-widget .post-img img {
-    width: 70%;
+    width: 100%;
 }
 
 /*=========================================================

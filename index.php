@@ -20,7 +20,7 @@
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="css/styles.css"/>
 
-  </head>
+  	</head>
 	<body>
 
 		<!-- Header -->
@@ -76,7 +76,7 @@
 					</div>
 					<!-- /nav -->
 
-        	<!-- widget posts -->
+        			<!-- widget posts -->
 					<div class="section-row">
 						<h3>Recent Posts</h3>
 						<span class="post post-widget">
@@ -119,82 +119,92 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row">	
+				<span class="row">	
 					<!-- post -->
-					<div class="col-md-6">
-					<div>
-						<h2>Recent Posts</h2>
-					</div>
-						<div class="post post-thumb">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post1.jpeg" alt=""></a>
-							<div class="post-body">
-								<div class="post-meta">
-									<a class="post-category cat-2" href="#">Cool right?</a>
-									<span class="post-date">March 15, 2019</span>
-								</div>
-								<h3 class="post-subject">Add atitle </h3>
-							</div>
+					<span class="col-md-6">
+						<span>
+							<h2>Recent Posts</h2>
+						</span>
+						<?php
+
+						// connect to the database
+						$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+						$sql = "SELECT Title, sourceDir, Date_Time, Description FROM posts WHERE userID = 1 ";
+						$result = $db->query($sql);
+
+							if ($result->num_rows > 0) {
+								// output data of each row
+								while($row = $result->fetch_assoc()) {
+
+									$Title = $row["Title"];
+									$source = $row["sourceDir"];
+									$Datetime = $row["Date_Time"];
+									$Description = $row["Description"];
+
+									echo "
+									<span class='post-container'>
+										<span class='post post-thumb'>
+											<a class='post-img' href='post.php'>
+											<img src='$source'  alt=''></a>
+											<span class='post-body'>
+												<div class='post-meta'>
+												<a class='post-category cat-1' href='post.php'>$Title</a>
+												<span class='post-date'>$Datetime</span>
+												<h3 class='post-subject'>$Description</h3>
+											</span>
+										</span>
+									</span>";
+
+								}}
+
+						?>
+					</span>
+				</span>
+
+				<hr />
+				<!-- Reports section -->
+				<div class="section">
+					<!-- container -->
+					<div class="container">
+						<!--Page Header-->			
+						<div >
+							<div >
+								<h2>Recent Attack Reports</h2>
+							</div><br>
 						</div>
-					</div>
-					<!-- /post -->
+						<!--/Page Header-->
 
-					<!-- post -->
-					<div class="col-md-6">
-						<div class="post post-thumb">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post2.jpeg" alt=""></a>
-							<div class="post-body">
-								<div class="post-meta">
-									<a class="post-category cat-3" href="#">Kenya's savannas</a>
-									<span class="post-date">March 16, 2019</span>
-								</div>
-								<h3 class="post-subject"><a href="#">Elephants among the few intelligent beings on earth</a></h3>
-							</div>
-						</div>
-					</div>
-					<!-- /post -->
-				</div>
-				<!-- /row -->
-
-		<hr />
-		<!-- Reports section -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!--Page Header-->			
-				<div >
-					<div >
-						<h2>Recent Attack Reports</h2>
-					</div><br>
-				</div>
-				<!--/Page Header-->
-
-				<?php $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
-				if ($conn->connect_error) {
-					die("Connection failed: " . $conn->connect_error);
-				} 
+						<?php $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+						if ($conn->connect_error) {
+							die("Connection failed: " . $conn->connect_error);
+						} 
 
 
-				$ReportMade = "SELECT  NumberOfElephants, LocationNow, LocationTo, Description, date_Time FROM reports ORDER BY `ReportID` DESC LIMIT 5"	;
-				$result = $db->query($ReportMade);
+						$ReportMade = "SELECT  NumberOfElephants, LocationNow, LocationTo, Description, date_Time FROM reports ORDER BY `ReportID` DESC LIMIT 5"	;
+						$result = $db->query($ReportMade);
 
-				if ($result->num_rows > 0) {
-					// output data of each row
-					while($row = $result->fetch_assoc()) {
+						if ($result->num_rows > 0) {
+							// output data of each row
+							while($row = $result->fetch_assoc()) {
+								
+								echo "<div class= 'report-container'> ".$row["date_Time"]."<br>"."<br>"." Number Of Elephants: " . $row["NumberOfElephants"]."<br>". " Their Location Now: " . $row["LocationNow"]."<br>". " Their Location To: " . $row["LocationTo"]. "<br>"." Description: " . $row["Description"]. "<br>"."<br></div>";
+								echo "<hr>";
+							}
+						} else {
+							echo "No results";
+						}
+						?>
 						
-						echo "<div class= 'report-container'> ".$row["date_Time"]."<br>"."<br>"." Number Of Elephants: " . $row["NumberOfElephants"]."<br>". " Their Location Now: " . $row["LocationNow"]."<br>". " Their Location To: " . $row["LocationTo"]. "<br>"." Description: " . $row["Description"]. "<br>"."<br></div>";
-						echo "<hr>";
-					}
-				} else {
-					echo "No results";
-				}
-				?>
+						<p>Previous Reports... <a href="reports.php" > See More </a><p>
 				
-				<p>Previous Reports... <a href="reports.php" > See More </a><p>
-				
+					</span>
+			
+					</span>
+
 			</div>
-			<!-- /container -->
+
 		</div>
-		<!-- /section -->
+		
 
 		<?php include( 'footer.inc'); ?>
 	</body>

@@ -47,7 +47,7 @@
     if (count($errors) == 0)
     {
 
-        $query = "INSERT INTO reports(NumberOfElephants, LocationNow, LocationTo,Description) VALUES('$number', '$locationNow', '$locationTo', '$Description')";
+        $query = "INSERT INTO reports(NumberOfElephants, LocationNow, LocationTo, Description) VALUES('$number', '$locationNow', '$locationTo', '$Description')";
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "Your report will be posted in afew seconds";
@@ -59,6 +59,7 @@
     #Posting on submit-image button.
 	if(isset($_POST['submit-image']))
 	{
+        $Title = mysqli_real_escape_string($db, $_POST['Title']);
 		$Description = mysqli_real_escape_string($db, $_POST['Description']);
         if ($_FILES["file"]["error"] > 0)
         {
@@ -66,20 +67,22 @@
         }
         else
         {
-            //$upload_dir = dirname(__FILE__) . "/photos/";
+            //
             $upload_dir ="/var/www/html/Projectcode/Posts/";
-            echo "upload_dir: " . $upload_dir . "<br>";
             if (file_exists($upload_dir))
             {
                 if (is_writable($upload_dir))
                 {
-                    $target = $upload_dir; //"dirname(__FILE__)" . "photos/";
+                    $target = $upload_dir;
                     $target = $target . basename($_FILES['file']['name']);
                     $moved = move_uploaded_file( $_FILES['file']['tmp_name'], "$target");
                     $size = ($_FILES["file"]["size"] / 1024);
                     $type = $_FILES["file"]["type"];
 
-                    $ImageQuery = "INSERT INTO posts(UserID, Title, size, source, Description) VALUES ('1', '$target', '$size', '$type', '$Description')";
+                    $posts = "./Posts/";
+                    $record = $posts . basename($_FILES['file']['name']);
+
+                    $ImageQuery = "INSERT INTO posts(UserID, Title, sourceDir, size, type, Description) VALUES ('1', '$Title', '$record', '$size', '$type', '$Description')";
                     mysqli_query($db, $ImageQuery);
                 }
                 else
@@ -91,10 +94,6 @@
             {
                 echo 'Upload directory does not exist.<br>';
             };
-        //echo dirname(__FILE__)."<br>";
-        echo $_FILES["file"]["name"]."<br>";
-        
-            //echo "Stored in: " . $_FILES["file"]["tmp_name"];
             
         
         
