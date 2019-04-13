@@ -4,7 +4,8 @@ session_start();
 // initializing variables
 $username = "";
 $email    = "";
-$errors = array(); 
+$errors = array();
+
 
 // connect to the database
 $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
@@ -72,8 +73,7 @@ if (isset($_POST['register'])) {
 
         $query = "INSERT INTO users (username, email, password) VALUES('$username', '$email', '$password')";
         mysqli_query($db, $query);
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "You are have been register successfully";
+        
         header('location: signin.php');
     }
 }
@@ -103,12 +103,11 @@ if (isset($_POST['signin'])) {
             }else{
                 $_SESSION['username'] = $username;
                 $_SESSION['success'] = "You are now logged in";
-                header('location: makeareport.php');
+                header('location: index.php');
             }
         }else {
             array_push($errors, "Wrong username and password combination");
         }
     }
   }
-
 ?>

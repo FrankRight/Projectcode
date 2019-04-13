@@ -61,8 +61,9 @@ else{
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
               				<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
 							<li class = "cat-5"><a href="register.php">JOIN US</a></li>
-							
 						</ul>
+							
+						
 						<!-- /nav -->
 
 						<!-- search & aside toggle -->
@@ -73,12 +74,24 @@ else{
 								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
 								<button class="search-close"><i class="fa fa-times"></i></button>
 							</div>
-							<span style="color: red"><a href="logout.php">log out</span>
-						</div> 
+							<span class="logout">
+								<?php
+									session_start();
+									if (isset($_SESSION['username']))
+									{
+										echo "<a href='logout.php' ><i class='fa fa-sign-out'></i></a>";
+									}
+								?>
+							</span>
+						</div>
+						</div>
+					
+							
 						<!-- /search & aside toggle -->
 					</div>
-				</div>
+					
 				<!-- /Main Nav -->
+				
 
 				<!-- Aside Nav -->
 				<div id="nav-aside">

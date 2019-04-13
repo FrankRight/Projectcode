@@ -866,3 +866,8 @@ textarea.input {
 .post.post-row .post-title {
     margin-bottom: 15px;
 }
+
+.logout:hover{
+    background-color:red;
+
+}

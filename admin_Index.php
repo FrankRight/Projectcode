@@ -130,17 +130,7 @@
 
 <!---Post Section--->
 <div style="margin: 5%">
-<h1>POST </h1>
-
-	<form action="admin_Index.php" method="post" enctype="multipart/form-data">
-			<input type="text" placeholder = "Enter Title" class="input" name="Title">
-      <label for="file">Select the file you want to Post:</label>
-      <input type="file" name="file"><br>
-			<div>
-			<textarea name="Description" placeholder="Describe the Image" class="input" id="" cols="30" rows="4"></textarea>
-			</div>
-      <input type="submit" name="submit-image" value="Submit" class="form-submit">
-  </form>
+<a href="admin_post.php"><h1 style="color: green;">POST </h1></a>	
 
 </div>
 <!---/Post Section--->

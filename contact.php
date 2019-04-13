@@ -43,7 +43,8 @@
 							<li><a href = "#"></a></li>
 							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
-                            <li class = "cat-5"><a href="about.php">ABOUT US</a></li>
+							<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
+							
 						</ul>
 						<!-- /nav -->
 
@@ -55,6 +56,15 @@
 								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
 								<button class="search-close"><i class="fa fa-times"></i></button>
 							</div>
+							<span class="logout">
+								<?php
+									session_start();
+									if (isset($_SESSION['username']))
+									{
+										echo "<a href='logout.php' ><i class='fa fa-sign-out'></i></a>";
+									}
+								?>
+							</span>
 						</div>
 						<!-- /search & aside toggle -->
 					</div>

@@ -1,3 +1,13 @@
+<?php include("server2.php"); 
+
+session_start(); 
+		  
+if (isset($_GET['logout'])){
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: signin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale = 1">
 		 <!-- Above 3 a must tags-->
 
-		<title><?php echo $pagename ?></title>
+		<title>Homapage-Admin</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
@@ -38,12 +48,11 @@
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
-							<li><a href = "index.php">HOME</a></li>
+							<li><a href = "index.php">MAIN HOMEPAGE</a></li>
 							<li><a href = "#"></a></li>
 							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
-							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
-              				<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
-							
+							<li class = "cat-5"><a href="contact.php">CONTACT</a></li>
+              <li class = "cat-3"><a href="logout.php">LOG OUT</a></li>
 						</ul>
 						<!-- /nav -->
 
@@ -51,25 +60,10 @@
 						<div class="nav-btns">
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
 							<button class="search-btn"><i class="fa fa-search"></i></button>
-							
 							<div class="search-form">
 								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
 								<button class="search-close"><i class="fa fa-times"></i></button>
 							</div>
-							<span class="logout">
-								<?php
-									if ($pagename == 'register page' || $pagename ==  'sign in page')
-									{
-										echo "";
-									}
-									else{
-									session_start();
-									if (isset($_SESSION['username']))
-									{
-										echo "<a href='logout.php' ><i class='fa fa-sign-out'></i></a>";
-									}}
-								?>
-							</span>
 						</div>
 						<!-- /search & aside toggle -->
 					</div>
@@ -127,3 +121,23 @@
 			</div>
 			<!-- /Nav -->
 		</header>
+
+<!---Post Section--->
+<div style="margin: 5%">
+<h1>POST </h1>
+
+	<form action="admin_Index.php" method="post" enctype="multipart/form-data">
+			<input type="text" placeholder = "Enter Title" class="input" name="Title">
+      <label for="file">Select the file you want to Post:</label>
+      <input type="file" name="file"><br>
+			<div>
+			<textarea name="Description" placeholder="Describe the Image" class="input" id="" cols="30" rows="4"></textarea>
+			</div>
+      <input type="submit" name="submit-image" value="Submit" class="form-submit">
+  </form>
+
+</div>
+<!---/Post Section--->
+
+
+<?php include('footer.inc')?>
