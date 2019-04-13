@@ -11,7 +11,6 @@
 							</div>
 							<ul class="footer-nav">
 								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Advertisement</a></li>
 							</ul>
 							<div class="footer-copyright">
 								<span>

@@ -119,47 +119,53 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<span class="row">	
+				<div class="row">	
 					<!-- post -->
-					<span class="col-md-6">
-						<span>
-							<h2>Recent Posts</h2>
-						</span>
-						<?php
+					<div style ="width: 1450px;">
+						<div class="row">
+							<div>
+								<h3> Recent Posts </h3>
+							</div>
+							<?php
 
-						// connect to the database
-						$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
-						$sql = "SELECT Title, sourceDir, Date_Time, Description FROM posts WHERE userID = 1 ";
-						$result = $db->query($sql);
+							// connect to the database
+							$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+							$sql = "SELECT Title, sourceDir, Date_Time, Description FROM posts  ORDER BY postID DESC LIMIT 6";
+							$result = $db->query($sql);
 
-							if ($result->num_rows > 0) {
-								// output data of each row
-								while($row = $result->fetch_assoc()) {
+								if ($result->num_rows > 0) {
+									// output data of each row
+									while($row = $result->fetch_assoc()) {
 
-									$Title = $row["Title"];
-									$source = $row["sourceDir"];
-									$Datetime = $row["Date_Time"];
-									$Description = $row["Description"];
+										$Title = $row["Title"];
+										$source = $row["sourceDir"];
+										$Datetime = $row["Date_Time"];
+										$Description = $row["Description"];
 
-									echo "
-									<span class='post-container'>
-										<span class='post post-thumb'>
-											<a class='post-img' href='post.php'>
-											<img src='$source'  alt=''></a>
-											<span class='post-body'>
-												<div class='post-meta'>
-												<a class='post-category cat-1' href='post.php'>$Title</a>
+										echo "
+								<div style='margin: 0px; float: relative'>
+								<div class='col-md-5'>
+									<div class='post post-row'>
+										<a class='post-img' href='post.php'><img src='$source' alt=''></a>
+										<div class='post-body'>
+											<span class='post-meta'>
+												<a class='post-category cat-5' href='#'>$Title</a>
 												<span class='post-date'>$Datetime</span>
-												<h3 class='post-subject'>$Description</h3>
 											</span>
-										</span>
-									</span>";
+											<h4 style='margin: 5px;'><a href='post.php'></a>$Description</h4>
+											<p></p>
+										</div>
+									</div>
+								</div>
+								</div>";
 
-								}}
+									}}
 
-						?>
-					</span>
-				</span>
+							?>
+						<p class='col-md-12'> <a href="reports.php" > See All Posts.</a><p>
+						</div>
+					</div>
+				</div>
 
 				<hr />
 				<!-- Reports section -->
@@ -200,6 +206,7 @@
 					</span>
 			
 					</span>
+
 
 			</div>
 

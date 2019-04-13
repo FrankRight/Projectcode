@@ -517,7 +517,7 @@ textarea.input {
     margin-bottom: 0px;
 }
 .post-meta .post-category {
-    font-size: 20px;
+    font-size: 13px;
     text-transform: uppercase;
     padding: 3px 10px;
     font-weight: 600;
@@ -529,7 +529,7 @@ textarea.input {
     transition: 0.2s opacity;
 }
 .post-meta .post-category:hover, .post-meta .post-category:focus {
-    text-decoration: none;
+    text-decoration: #a94442;
     opacity: 0.9;
 }
 .post-meta .post-category.cat-1 {
@@ -571,6 +571,37 @@ textarea.input {
     border-radius:2px;
     -webkit-transition:0.2s opacity;
     transition:0.2s opacity;
+}
+/*----------------------------*\
+	post thumb
+\*----------------------------*/
+.post.post-thumb {
+    position: relative;
+}
+.post.post-thumb .post-img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(33, 38, 49, 0.3)), to(transparent));
+    background: linear-gradient(to top, rgba(33, 38, 49, 0.3) 0%, transparent 100%);
+}
+.post.post-thumb .post-body {
+    position: absolute;
+    bottom: 0px;
+    padding: 20px 15px;
+}
+.post.post-thumb .post-meta .post-date {
+    color: #eceef2;
+}
+.post.post-thumb .post-title {
+    font-size: 22px;
+    color: #FFF;
+}
+.post.post-thumb .post-title > a {
+    color: #FFF;
 }
 
 /*----------------------------*\
@@ -812,4 +843,26 @@ textarea.input {
     background-color: white;
     font-weight: bold;
     color: black;
+}
+
+/*----------------------------*\
+	post row
+\*----------------------------*/
+.post.post-row:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.post.post-row .post-img {
+    width: 40%;
+    float: left;
+}
+.post.post-row .post-body {
+    margin-left: calc(40% + 30px);
+}
+.post.post-row .post-meta {
+    margin-top: 0px;
+}
+.post.post-row .post-title {
+    margin-bottom: 15px;
 }
