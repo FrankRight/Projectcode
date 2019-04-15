@@ -18,6 +18,7 @@ if (isset($_POST['register'])) {
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password1 = mysqli_real_escape_string($db, $_POST['password1']);
     $password2 = mysqli_real_escape_string($db, $_POST['password2']);
+    $forget = mysqli_real_escape_string($db, $_POST['forget']);
 
     //  ensure that the form is correctly filled.
     #username
@@ -34,6 +35,11 @@ if (isset($_POST['register'])) {
     if (empty($password1))
     {
         array_push($errors, "Password is required"); 
+    }
+    #Reset Password detail
+    if (empty($forget))
+    {
+        array_push($errors, "Reset password detail required!"); 
     }
     #all passwords must match
     if ($password1 != $password2)
@@ -70,8 +76,9 @@ if (isset($_POST['register'])) {
     if (count($errors) == 0)
     {
         $password = md5($password1);//encrypt the password before saving in the database
+        $forgt = md5($forget);
 
-        $query = "INSERT INTO users (username, email, password) VALUES('$username', '$email', '$password')";
+        $query = "INSERT INTO users (username, email, password, forget) VALUES('$username', '$email', '$password', '$forgt)')";
         mysqli_query($db, $query);
         
         header('location: signin.php');
@@ -110,4 +117,35 @@ if (isset($_POST['signin'])) {
         }
     }
   }
+
+  if(isset($_POST['answer-submit']))
+  {
+    $forget = mysqli_real_escape_string($db, $_POST['answer']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+
+    if (empty($forget)) {
+        array_push($errors, "Please Enter the answer in the space below!");
+    }
+    if (empty($email))
+    {
+        array_push($errors, "Email is required");
+    }
+    else{
+    $answer = md5($forget);
+    $query = "SELECT * FROM users WHERE forget='$answer' AND email = '$email'";
+        $results = mysqli_query($db, $query);
+        if (mysqli_num_rows($results) == 1)
+        {
+            header('location: reset.php');
+        }
+        else{
+            array_push($errors, "Wrong Answer!Please Try Again.");
+
+        }
+  }
+}
+
+
+
+
 ?>

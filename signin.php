@@ -1,6 +1,7 @@
 <?php include('server.php') ?>
 <?php $pagename = "sign in page"; include( 'header.php'); ?>
         <!-- Sign in  Form -->
+ 
     <section >
         <div class="container">
             <div class="signup-content">
@@ -27,6 +28,8 @@
                 <span class="signup-image">
                     <figure><img src="elephantPhotos/post16.jpg" alt="sign up image"></figure>
                     <a href="register.php" class="signup-image-link">Create a new account?</a>
+                    <span style="color: blue";> ~OR~</span>
+                    <a href="reset-password.php" class="signup-image-link">Forgot Password?</a>
                 </span>
                             
             </div>

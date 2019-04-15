@@ -51,9 +51,11 @@
 						<div class="footer-widget">
 							<h3 class="footer-title">To receive our Newsletter</h3>
 							<div class="footer-newsletter">
-								<form>
-									<input class="input" type="email" name="newsletter" placeholder="Enter your email">
-									<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
+								<form action="https://app.moosend.com/subscribe/328a6603-5f61-4a05-bd0b-b17d6c9da0cc" method="post" id="ms-sub-form" target="_blank">
+									<div>
+									<label for="email">email:</label><input type="email" name="ms-email" id="email" class="input" required />
+									<input type="submit" value="Subscribe" /><div style="margin-top: 10px;"><a href="//www.moosend.com/?utm_source=poweredby&utm_medium=forms&utm_campaign=elephantalert254.moosend.com" target="_blank"><img alt="powered by moosend" src="//www.moosend.com/images/poweredby.png" /></a></div>
+									</div>
 								</form>
 							</div>
 							<ul class="footer-social">
