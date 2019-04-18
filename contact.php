@@ -44,6 +44,13 @@
 							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
 							<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
+							<?php
+									session_start();
+									if (!isset($_SESSION['username']))
+									{
+										echo "<li class = 'cat-5'><a href='register.php'>JOIN US</a></li>";
+									}
+							?>
 							
 						</ul>
 						<!-- /nav -->
@@ -51,11 +58,6 @@
 						<!-- search & aside toggle -->
 						<div class="nav-btns">
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
-							<button class="search-btn"><i class="fa fa-search"></i></button>
-							<div class="search-form">
-								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-								<button class="search-close"><i class="fa fa-times"></i></button>
-							</div>
 							<span class="logout">
 								<?php
 									session_start();
@@ -136,8 +138,8 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row">
-					<div class="col-md-6">
+				<div class="row" style = "margin: 0% 15%">
+					<div class="col-md-12">
 						<div class="section-row">
 							<h3>Contact Information</h3>
 							<p>You can visit our visit and contact us every day, 24 - 7 long. Give us your feedback which will be highly valued. You can contact using the below information.</p>
@@ -146,33 +148,6 @@
 								<li><p><strong>Phone:</strong> +254799244523</p></li>
 								<li><p><strong>Address:</strong> PO BOX 342</p></li>
 							</ul>
-						</div>
-					</div>
-					<div class="col-md-5 col-md-offset-1">
-						<div class="section-row">
-							<h3>Send A Message</h3>
-							<form method="post" action="email.php">
-								<div class="row">
-									<div class="col-md-7">
-										<div class="form-group">
-											<span>Email</span>
-											<input class="input" type="email" name="email">
-										</div>
-									</div>
-									<div class="col-md-7">
-										<div class="form-group">
-											<span>Subject</span>
-											<input class="input" type="text" name="subject">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea class="input" name="message" placeholder="Message"></textarea>
-										</div>
-										<button class="primary-button" name="submit-email">Submit</button>
-									</div>
-								</div>
-							</form>
 						</div>
 					</div>
 				</div>

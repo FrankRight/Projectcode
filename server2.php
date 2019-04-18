@@ -4,7 +4,8 @@
     $locationNow = "";
     $locationTo = "";
     $Description = "";
-    $errors = array(); 
+    $errors = array();
+    $success = array();
 
     // connect to the database
     $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
@@ -42,19 +43,29 @@
     {
         array_push($errors, "Please enter a valid Description!");
     }
-
+    $user_check_query = "SELECT * FROM reports WHERE NumberOfElephants= '$number' AND LocationNow = '$locationNow' AND LocationTo = '$locationTo' LIMIT 1";
+    $resultFromQuery =  $db->query($user_check_query);
+    $singlereport = $resultFromQuery->fetch_assoc();
+    
+    if($singlereport){
+    // if report exists
+        array_push($errors, "Thank for report! But your report has already been made.");
+}
     // if there are no errors in the form
     if (count($errors) == 0)
     {
-
-        $query = "INSERT INTO reports(NumberOfElephants, LocationNow, LocationTo, Description) VALUES('$number', '$locationNow', '$locationTo', '$Description')";
-        mysqli_query($db, $query);
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "Your report will be posted in afew seconds";
-        header('location: index.php');
+        if (isset($_SESSION['username']))
+        {
+            $username = $_SESSION['username'];
+            $query = "INSERT INTO reports(userID, NumberOfElephants, LocationNow, LocationTo, Description) VALUES((SELECT userID FROM users where username = '".$username."'),'$number', '$locationNow', '$locationTo', '$Description')";
+            mysqli_query($db, $query);
+            $_SESSION['username'] = $username;
+            $_SESSION['success'] = "Your report will be posted in afew seconds";
+            header('location: index.php');
+        }
     }
 
-    }
+}
 
     #Posting on submit-image button.
 	if(isset($_POST['submit-image']))
@@ -99,6 +110,54 @@
         
         }
 
-	}
+    }
+
+    if (isset($_POST['deleteUser']))
+    {
+    $ID = mysqli_real_escape_string($db, $_POST['userID']);
+            
+            $sql = "DELETE * FROM users WHERE userID = '$ID'";
+            $retval = mysqli_query( $db, $sql );
+            
+            if(! $retval )
+            {
+               die('Could not delete data: ' . mysql_error());
+            }
+            else
+            {
+                echo "Deleted data successfully\n";
+            }
+    }
+
+    if (isset($_POST['pass']))
+    {
+    $password1 = mysqli_real_escape_string($db, $_POST['password1']);
+    $password2 = mysqli_real_escape_string($db, $_POST['password2']);
+    if ($password1 != $password2)
+    {
+        array_push($errors, "The two passwords do not match");
+    }
+    #password
+    if (empty($password1))
+    {
+        array_push($errors, "Password is required"); 
+    }
+    #the length of password should be greater than or equal to 8
+    if (strlen($password1) < 8)
+    {
+        array_push($errors, "Password should have 8 or more characters");
+    }
+    if (count($errors) == 0)
+    {
+            $password = md5($password1);
+            $sql = "UPDATE  users SET password = '$password' WHERE password = '$password'";
+            $retval = mysqli_query( $db, $sql );
+            
+            if(! $retval ) {
+               die('Could not change password data: ' . mysql_error());
+            }
+            location('signin.php');
+    }
+}
 
 ?>

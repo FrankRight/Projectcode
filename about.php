@@ -44,6 +44,13 @@
 							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
 							<li class = "cat-5"><a href="about.php">ABOUT US</a></li>
+							<?php
+									session_start();
+									if (!isset($_SESSION['username']))
+									{
+										echo "<li class = 'cat-5'><a href='register.php'>JOIN US</a></li>";
+									}
+							?>
 							
 						</ul>
 						<!-- /nav -->
@@ -90,26 +97,25 @@
           <!-- widget posts -->
 					<div class="section-row">
 						<h3>Recent Posts</h3>
-						<div class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post5.jpg" alt=""></a>
-							<div class="post-body">
-								<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
-							</div>
-						</div>
+						<?php	// 
+								$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+								if ($db->connect_error) {
+									die("Connection failed: " . $db->connect_error);
+								} 
+								$mysql = "SELECT Title, sourceDir FROM posts  ORDER BY postID DESC LIMIT 3";
+								$res = $db->query($mysql);
 
-						<div class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post3.jpg" alt=""></a>
-							<div class="post-body">
-								<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
-							</div>
-						</div>
+									if ($res->num_rows > 0) {
+										// output data of each row
+										while($row = $res->fetch_assoc()) {
 
-						<div class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post4.jpg" alt=""></a>
-							<div class="post-body">
-								<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
-							</div>
-						</div>
+											$Tit = $row["Title"];
+											$srce = $row["sourceDir"];
+											
+											echo "<span class='post post-widget'><a class='post-img' href='post.php'><img src='$srce' alt=''>$Tit</a></span>";
+										}}
+						?>
+						
 					</div>
 					<!-- /widget posts -->
 
@@ -156,10 +162,7 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="section-row">
-							<p>Jvbuerveeee ejrbvevje ejvee ejverjv jvbejvejvej.</p>
-							<figure >
-								<img  src="./elephantPhotos/post27.jpeg" alt="">
-							</figure>
+							<p>Jvbuerveeee .</p>
 							<br>
 							<p>Dvadjhvdvjhdva asdjvjsvasdj ajsvbjhsvas ajvbjhasdv adjvsjhs sanvsfjh.</p>
 						</div>
@@ -183,40 +186,36 @@
 					
 					<!-- aside -->
 					<div class="col-md-4">
-						<!-- ad -->
-						<div class="aside-widget text-center">
-							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="./elephantPhotos/post5.jpg" alt="">
-							</a>
-						</div>
-						<!-- /ad -->
+						
 
 						<!-- post widget -->
 						<div class="aside-widget">
 							<div class="section-title">
 								<h2>Recent Posts</h2>
 							</div>
+							<?php	// 
+								$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+								if ($db->connect_error) {
+									die("Connection failed: " . $db->connect_error);
+								} 
+								$mysql = "SELECT Title, sourceDir FROM posts  ORDER BY postID DESC LIMIT 4";
+								$res = $db->query($mysql);
 
-							<div class="post post-widget">
-								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post39.jpg" alt=""></a>
-								<div class="post-body">
-									<span><a href="posts.php">post 1</a></span>
-								</div>
-							</div>
+									if ($res->num_rows > 0) {
+										// output data of each row
+										while($row = $res->fetch_assoc()) {
 
-							<div class="post post-widget">
-								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post38.jpeg" alt=""></a>
-								<div class="post-body">
-								<span><a href="posts.php">Post 2</a></span>
-								</div>
-							</div>
-
-							<div class="post post-widget">
-								<a class="post-img" href="posts.php"><img src="./elephantPhotos/post13.jpg" alt=""></a>
-								<div class="post-body">
-									<span><a href="posts.php">Statictics on elephants in Kenya</a></span>
-								</div>
-							</div>
+											$Tit = $row["Title"];
+											$srce = $row["sourceDir"];
+											
+											echo "<div class='post post-widget'>
+											<a class='post-img' href='posts.php'><img src='$srce' alt=''></a>
+											<div class='post-body'>
+												<span><a href='posts.php'>$Tit</a></span>
+											</div>
+										</div>";
+										}}
+						?>
 						<!-- /post widget -->
 					</div>
 					<!-- /aside -->

@@ -11,6 +11,10 @@ body {
     overflow-x: hidden;
     background-color: #ccdef1;
 }
+
+hr{
+    text-align: center;
+}
 fieldset{
     padding: 50px;
     margin: 50px;

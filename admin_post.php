@@ -48,11 +48,11 @@ if (isset($_GET['logout'])){
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
-							<li><a href = "index.php">MAIN HOMEPAGE</a></li>
+							<li><a href = "admin_Index.php">HOME</a></li>
 							<li><a href = "#"></a></li>
-							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
-							<li class = "cat-5"><a href="contact.php">CONTACT</a></li>
-              <li class = "cat-3"><a href="logout.php">LOG OUT</a></li>
+							<li class = "cat-1"><a href="admin_post.php">POST</a></li>
+							<li class = "cat-5"><a href="admin-users.php">USERS</a></li>
+							<li class = "cat-3"><a href="logout.php">LOG OUT</a></li>
 						</ul>
 						<!-- /nav -->
 
@@ -88,17 +88,8 @@ if (isset($_GET['logout'])){
         	<!-- widget posts -->
 					<div class="section-row">
 						<h3>Recent Posts</h3>
-						<span class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post5.jpg" alt=""></a>
-						</span>
-
-						<span class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post3.jpg" alt=""></a>
-						</span>
-
-						<span class="post post-widget">
-							<a class="post-img" href="#"><img src="./elephantPhotos/post4.jpg" alt=""></a>
-						</span>
+						
+						
 					</div>
 					<!-- /widget posts -->
 
@@ -124,7 +115,7 @@ if (isset($_GET['logout'])){
 
 <!---Post Section--->
 <div style="margin: 5%">
-<h1>POST </h1>
+<h3>Add a new Post </h3>
 
 	<form action="admin_Index.php" method="post" enctype="multipart/form-data">
 			<input type="text" placeholder = "Enter Title" class="input" name="Title">
@@ -135,9 +126,53 @@ if (isset($_GET['logout'])){
 			</div>
       <input type="submit" name="submit-image" value="Submit" class="form-submit">
   </form>
+	</div><hr>
+	<div>
+	<h3>Posts</h3>
+							<?php	// 
+							$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							} 
+							$sql = "SELECT Title, sourceDir, Date_Time, Description FROM posts  ORDER BY postID ";
+							$result = $db->query($sql);
 
-</div>
+								if ($result->num_rows > 0) {
+									// output data of each row
+									while($row = $result->fetch_assoc()) {
+
+										$Title = $row["Title"];
+										$source = $row["sourceDir"];
+										$Datetime = $row["Date_Time"];
+										$Description = $row["Description"];
+
+										echo "
+											<div style='margin: 0px; float: relative'>
+											<div class='col-md-5'>
+												<div class='post post-row'>
+													<a class='post-img' href='post.php'><img src='$source' alt=''></a>
+													<div class='post-body'>
+														<span class='post-meta'>
+															<a class='post-category cat-5' href='#'>$Title</a>
+															<span class='post-date'>$Datetime</span>
+														</span>
+														<h4 style='margin: 5px;'><a href='post.php'></a>$Description</h4>
+														<p></p>
+													</div>
+												</div>
+											</div>
+											</div>";
+
+									}}
+									
+							?>
+	</div>
+	<div>
+	
+
+
 <!---/Post Section--->
-
+<div class='col-md-12'>
 
 <?php include('footer.inc')?>
+<div>

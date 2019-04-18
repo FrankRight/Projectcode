@@ -1,5 +1,7 @@
 <?php include('server.php') ?>
-<?php $pagename = "sign in page"; include( 'header.php'); ?>
+<?php $pagename = "sign in page"; include( 'header.php');
+
+?>
         <!-- Sign in  Form -->
  
     <section >

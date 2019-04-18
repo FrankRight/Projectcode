@@ -1,19 +1,13 @@
-<?php include("server2.php"); ?>
+<?php  
 
-<?php
-			session_start(); 
+session_start(); 
 		  
-			if (!isset($_SESSION['username'])){
-				$_SESSION['msg'] = "You must log in first";
-				header('location: signin.php');
-			}
-			if (isset($_GET['logout'])){
-				session_destroy();
-				unset($_SESSION['username']);
-				header("location: signin.php");
-			}
+if (isset($_GET['logout'])){
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: signin.php");
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -54,10 +48,10 @@
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
-							<li><a href = "index.php">MAIN HOMEPAGE</a></li>
+							<li><a href = "admin_Index.php">HOME</a></li>
 							<li><a href = "#"></a></li>
 							<li class = "cat-1"><a href="admin-users.php">USERS</a></li>
-							<li class = "cat-5"><a href="contact.php">CONTACT</a></li>
+							<li class = "cat-5"><a href="admin_post.php">POST</a></li>
               				<li class = "cat-3"><a href="logout.php">LOG OUT</a></li>
 						</ul>
 						<!-- /nav -->
@@ -65,7 +59,11 @@
 						<!-- search & aside toggle -->
 						<div class="nav-btns">
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
-							
+							<button class="search-btn"><i class="fa fa-search"></i></button>
+							<div class="search-form">
+								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+								<button class="search-close"><i class="fa fa-times"></i></button>
+							</div>
 						</div>
 						<!-- /search & aside toggle -->
 					</div>
@@ -89,25 +87,8 @@
 
         	<!-- widget posts -->
 					<div class="section-row">
-						<h3>What you have recently posted.</h3>
-						<?php	// 
-								$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
-								if ($db->connect_error) {
-									die("Connection failed: " . $db->connect_error);
-								} 
-								$mysql = "SELECT Title, sourceDir FROM posts  ORDER BY postID DESC LIMIT 3";
-								$res = $db->query($mysql);
-
-									if ($res->num_rows > 0) {
-										// output data of each row
-										while($row = $res->fetch_assoc()) {
-
-											$Tit = $row["Title"];
-											$srce = $row["sourceDir"];
-											
-											echo "<span class='post post-widget'><a class='post-img' href='post.php'><img src='$srce' alt=''>$Tit</a></span>";
-										}}
-						?>
+						<h3>Recent Posts</h3>
+						
 						
 					</div>
 					<!-- /widget posts -->
@@ -132,12 +113,9 @@
 			<!-- /Nav -->
 		</header>
 
-<!---Post Section--->
-<div style="margin: 5%">
-<a href="admin_post.php"><h1 style="color: green;">POSTS </h1></a>
 <?php include("server2.php") ?>
 	<div>
-	<h3>All Reports ever reported:</h3>
+	<h3>All Registered users in the system:</h3>
  
     
 							<?php	// 
@@ -145,39 +123,30 @@
 							if ($conn->connect_error) {
 								die("Connection failed: " . $conn->connect_error);
 							} 
-							$sql = "SELECT * FROM reports  ORDER BY reportID DESC";
+							$sql = "SELECT userID, username, email FROM users  ORDER BY userID DESC";
                             $result = $db->query($sql);
                             
                             echo "
                             <table border = '1' style = 'margin: 0% 25%'>
-							<tr>
-							<th><b> REPORTED BY </b></th>
-                            <th><b> NUMBER </b></th>
-							<th><b> LOCATION FROM </b></th>
-							<th><b> LOCATION TO </b></th>
-							<th><b> DESCRIPTION </b></th>
-							<th><b> DATE TIME </b></th> </tr>
-							<th><b>  </b></th>";
+                            <tr>
+                            <th><b> USERID </b></th>
+                            <th><b> USERNAME </b></th>
+                            <th><b> EMAIL </b></th> </tr>";
 
 								if ($result->num_rows > 0) {
 									// output data of each row
 									while($row = $result->fetch_assoc()) {
 
-										$Reportedby = $row["userID"];
-										$Number = $row["NumberOfElephants"];
-										$NOW = $row["LocationNow"];
-										$TO = $row["LocationTo"];
-										$Desc = $row["Description"];
-										$Date = $row["date_Time"];
+										$userID = $row["userID"];
+										$username = $row["username"];
+										$email = $row["email"];
 
 										echo "
 										<tr>
-											<td>$Reportedby</td>
-                                            <td>$Number</td>
-                                            <td>$NOW</td>
-                                            <td>$TO</td>
-											<td>$Desc</td>
-											<td>$Date</td>
+                                            <td>$userID</td>
+                                            <td>$username</td>
+                                            <td>$email</td>
+                                            <td></td>
                                         </tr>	";
 
                                     }}
@@ -185,10 +154,20 @@
                                     echo "</table>";
 									
                     ?>
+             
+    <form style = 'margin: 2% 25%' method = "post" action = "admin-users.php">
+    <label>Delete a User</label>
+        <input type="text" placeholder="Enter the user ID" name="userID" class="input" >
+        <input type="submit" name="deleteUser" value="Delete" class="form-submit">
+
+    </form>
+	</div>
+	<div>
+	
 
 
-</div>
 <!---/Post Section--->
-
+<div class='col-md-12'>
 
 <?php include('footer.inc')?>
+<div>

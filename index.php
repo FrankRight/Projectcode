@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -34,13 +32,25 @@
 					<div class="container">
 						<!-- logo -->
 						<div class="nav-logo">
-							<a href="index.php" class="logo"><img src="" alt="logo"></a>
+							<a href="index.php" class="logo"><img src="" alt="EAS"></a>
 						</div>
 						<!-- /logo -->
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
-							<li><a href = "index.php">HOME</a></li>
+						<li>
+						<?php
+									session_start();
+									if ($_SESSION['username'] == "admin")
+									{
+										echo "<a href='admin_Index.php' >HOME</a>";
+									}
+									else
+									{
+										echo "<a href='index.php' >HOME</a>";
+									}
+								?>
+						</li>
 							<li><a href = "#"></a></li>
 							<li class = "cat-1"><a href="makeareport.php">MAKE A REPORT</a></li>
 							<li class = "cat-3"><a href="contact.php">CONTACT US</a></li>
@@ -63,11 +73,6 @@
 						<!-- search & aside toggle -->
 						<div class="nav-btns">
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
-							<button class="search-btn"><i class="fa fa-search"></i></button>
-							<div class="search-form">
-								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-								<button class="search-close"><i class="fa fa-times"></i></button>
-							</div>
 							<span class="logout">
 								<?php
 									session_start();
@@ -101,17 +106,25 @@
         			<!-- widget posts -->
 					<div class="section-row">
 						<h3>Recent Posts</h3>
-						<span class="post post-widget">
-							<a class="post-img" href="posts.php"><img src="./elephantPhotos/post5.jpg" alt=""></a>
-						</span>
+						<?php	// 
+								$db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
+								if ($db->connect_error) {
+									die("Connection failed: " . $db->connect_error);
+								} 
+								$mysql = "SELECT Title, sourceDir FROM posts  ORDER BY postID DESC LIMIT 3";
+								$res = $db->query($mysql);
 
-						<span class="post post-widget">
-							<a class="post-img" href="posts.php"><img src="./elephantPhotos/post3.jpg" alt=""></a>
-						</span>
+									if ($res->num_rows > 0) {
+										// output data of each row
+										while($row = $res->fetch_assoc()) {
 
-						<span class="post post-widget">
-							<a class="post-img" href="posts.php"><img src="./elephantPhotos/post4.jpg" alt=""></a>
-						</span>
+											$Tit = $row["Title"];
+											$srce = $row["sourceDir"];
+											
+											echo "<span class='post post-widget'><a class='post-img' href='post.php'><img src='$srce' alt=''>$Tit</a></span>";
+							}}
+					?>
+						
 					</div>
 					<!-- /widget posts -->
 
@@ -154,7 +167,7 @@
 							if ($conn->connect_error) {
 								die("Connection failed: " . $conn->connect_error);
 							} 
-							$sql = "SELECT Title, sourceDir, Date_Time, Description FROM posts  ORDER BY postID DESC LIMIT 6";
+							$sql = "SELECT userID, Title, sourceDir, Date_Time, Description FROM posts  ORDER BY postID DESC LIMIT 6";
 							$result = $db->query($sql);
 
 								if ($result->num_rows > 0) {
@@ -165,7 +178,7 @@
 										$source = $row["sourceDir"];
 										$Datetime = $row["Date_Time"];
 										$Description = $row["Description"];
-
+										
 										echo "
 											<div style='margin: 0px; float: relative'>
 											<div class='col-md-5'>
@@ -197,13 +210,12 @@
 				<div class="section">
 					<!-- container -->
 					<div class="container">
-						<!--Page Header-->			
+		
 						<div >
 							<div >
 								<h2>Recent Attack Reports</h2>	
 							</div><br>
 						</div>
-						<!--/Page Header-->
 
 						<?php $db = mysqli_connect('localhost', 'right', 'Fank.2010', 'EASDatabaseSystem');
 						if ($conn->connect_error) {
@@ -211,18 +223,33 @@
 						} 
 
 
-						$ReportMade = "SELECT  NumberOfElephants, LocationNow, LocationTo, Description, date_Time FROM reports ORDER BY `ReportID` DESC LIMIT 5";
+						$ReportMade = "SELECT  userID, NumberOfElephants, LocationNow, LocationTo, Description, date_Time FROM reports ORDER BY `ReportID` DESC LIMIT 5";
 						$result = $db->query($ReportMade);
 
-						if ($result->num_rows > 0) {
+						if ($result->num_rows > 0)
+						{
 							// output data of each row
-							while($row = $result->fetch_assoc()) {
+							while($row = $result->fetch_assoc())
+							{
+								$ID = $row["userID"];
+
+								$mysql = "SELECT username FROM users  WHERE userID = '$ID'";
+								$result1 = $db->query($mysql);
+								if ($result1->num_rows > 0)
+								{
+									// output data of each row
+									while($user = $result1->fetch_assoc())
+									{
 								
-								echo "<div class= 'report-container'> ".$row["date_Time"]."<br>"."<br>"." Number Of Elephants: " . $row["NumberOfElephants"]."<br>". " Their Location Now: " . $row["LocationNow"]."<br>". " Their Location To: " . $row["LocationTo"]. "<br>"." Description: " . $row["Description"]. "<br>"."<br></div>";
-								echo "<hr>";
+										echo "<div class= 'report-container'> ". $user['username']. "&emsp;&emsp;&emsp;&emsp;".$row["date_Time"]."<br>"."<br>"." Number Of Elephants: " . $row["NumberOfElephants"]."<br>". " Their Location Now: " . $row["LocationNow"]."<br>". " Their Location To: " . $row["LocationTo"]. "<br>"." Description: " . $row["Description"]. "<br>"."<br></div>";
+										echo "<hr>";
+									}
+								}
+								else
+								{
+									echo "No results";
+								}
 							}
-						} else {
-							echo "No results";
 						}
 						?>
 						

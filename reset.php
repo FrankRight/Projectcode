@@ -3,19 +3,19 @@
 $pagename = "reset password";
 
 include('header.php');
+include('server2.php');
 
 ?>
 
-<form style="margin: 50px;" action="server.php" method="post">
+<form style="margin: 50px;" action="reset.php" method="post">
+<?php include('errors.php')?>
 <div >
-    <input type="email" name="email" class="input" placeholder="Your Email"/>
-</div><br>
-<div >
-<input type="password" name="password1" class="input" placeholder="Password(8 or more digits)"/>
+<input type="password" name="password1" class="input" placeholder="New Password(8 or more digits)"/>
  </div><br>
  <div >
-    <input type="password" name="password2" class="input" placeholder="Repeat your password"r/>
+    <input type="password" name="password2" class="input" placeholder="Repeat your new password"r/>
 </div><br>
+<input type="submit" name="pass" class="form-submit" value="Submit"/>
 
 </form>
 

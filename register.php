@@ -22,15 +22,7 @@
                                     <div >
                                         <input type="password" name="password2" class="input" placeholder="Repeat your password"r/>
                                     </div><br>
-                                    <div >
-                                        <label style="font-weight: 600px;">Any personal Detail incase you forget your password.</label>
-                                        <input type="tect" name="forget" class="input" placeholder="The detail"r/>
-                                    </div><br>
-                                    <div >
-                                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
-                                        <label for="agree-term" ><span></span>I agree all statements in  <a href="termsAndConditions.php" class="term-service">Terms of service</a></label>
-                                    </div><br>
-                                    
+                                   
                                     <div >
                                         <input type="submit" name="register" class="form-submit" value="Register"/>
 									</div><br>
